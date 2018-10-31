@@ -15,13 +15,13 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Login insert(Login login) {
-        //loginDAO.insert(login);
+        loginDAO.insert(login);
         return login;
     }
 
     @Override
     public Login update(Login login) {
-        // loginDAO.update(login);
+         loginDAO.update(login);
         return login;
     }
 
@@ -40,5 +40,11 @@ public class LoginServiceImpl implements LoginService {
         login.setLoginName(loginName);
         List<Login> loginList = loginDAO.selectByContion(login);
         return !loginList.isEmpty() ? (Login)loginList.get(0) : null;
+    }
+
+    @Override
+    public String adduser(Login var1) {
+        this.insert(var1);
+        return null;
     }
 }

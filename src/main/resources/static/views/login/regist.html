@@ -1,0 +1,44 @@
+<html>
+
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src=".././js/uikit-2.25.0/js/uikit.js"></script>
+<link rel="stylesheet" href=".././js/uikit-2.25.0/css/uikit.css"/>
+<body>
+<div id="page1"></div>
+<form class="uk-form uk-form-horizontal" action="addUser">
+    <fieldset>
+        <div class="uk-form-row">
+            <label class="uk-form-label  self-label" for="">用户名：</label>
+            <input type="text" placeholder="" name = "userName" class="uk-form-danger" required="required">
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label self-label" for="">登陆名：</label>
+            <input type="text" placeholder=""  name ="loginName" class="uk-form-success" required="required">
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label self-label" for="">密码：</label>
+            <input type="password" placeholder="" id="password1" name ="password" class="uk-form-success" required="required">
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label self-label" for="">确认密码：</label>
+            <input type="password" placeholder="" id="password2" name ="password2" class="uk-form-success" required="required">
+        </div>
+        <div class="uk-form-row">
+            <input type="submit" value="注册">
+
+        </div>
+    </fieldset>
+</form>
+
+<script type="text/javascript">
+    $("#loginBtn").click(function () {
+        if ($("form").valid()){
+            $("form").submit();
+        }
+
+    })
+</script>
+
+</body>
+</html>

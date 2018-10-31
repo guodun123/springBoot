@@ -11,5 +11,6 @@ public interface LoginService {
     void checkPassword(String var1, String var2);
 
     Login selectByLoginName(String var1);
+    String adduser(Login var1);
 }
 
