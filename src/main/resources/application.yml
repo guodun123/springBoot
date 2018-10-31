@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    #数据库 地址 用户名 密码  以及驱动 此处报错不影响启动（设置的是启动加载驱动）
+    url: jdbc:mysql://localhost:3306/sefldb
+    username: root
+    password: admin
+    driver-class-name: com.mysql.jdbc.Driver
+  mvc:
+    view:
+      # 定位模板的目录
+      prefix: /views/
+      # 给返回的页面添加后缀名
+      suffix: .html
+
+#  thymeleaf:
+#    cache: false
+#    encoding: UTF-8
+#    servlet:
+#      content-type: text/html
+#    mode: LEGACYHTML5
+
+
+mybatis:
+  #实体包位置
+  type-aliases-package: com.example.demo
+  #xml位置
+  mapper-locations: classpath:mapper/*.xml

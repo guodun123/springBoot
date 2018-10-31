@@ -1,0 +1,41 @@
+<html>
+
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src=".././js/uikit-2.25.0/js/uikit.js"></script>
+<link rel="stylesheet" href=".././js/uikit-2.25.0/css/uikit.css"/>
+<body>
+<div id="page1"></div>
+<form class="uk-form uk-form-horizontal" action="login">
+    <fieldset>
+        <div class="uk-form-row">
+            <label class="uk-form-label  self-label" for="">登陆名：</label>
+           <!-- <div class="uk-form-controls">
+                <span class="uk-form-help-inline"></span>-->
+                <input type="text" placeholder="" name = "loginName" class="uk-form-danger" required="required">
+            <!--</div>-->
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label self-label" for="">密码：</label>
+           <!-- <div class=" uk-form-controls">
+                <span class="uk-form-help-inline"></span>-->
+                <input type="password" placeholder="" name ="password" class="uk-form-success" required="required">
+           <!-- </div>-->
+        </div>
+        <div class="uk-form-row">
+            <input type="submit" value="登陆">
+        </div>
+    </fieldset>
+</form>
+
+<script type="text/javascript">
+    $("#loginBtn").click(function () {
+        if ($("form").valid()){
+            $("form").submit();
+        }
+
+    })
+</script>
+
+</body>
+</html>
