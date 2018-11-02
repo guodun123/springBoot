@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.common.ResponseHolder;
 import com.example.demo.model.Login;
 import com.example.demo.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,8 @@ public class LoginController {
     }
     @RequestMapping("addUser")
     @ResponseBody
-    public Login addUser(Login login){
+    public ResponseHolder addUser(Login login){
         loginService.adduser(login);
-        return login;
+        return ResponseHolder.buildSuccessResponse();
     }
 }
