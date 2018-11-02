@@ -6,7 +6,7 @@
 <link rel="stylesheet" href=".././js/uikit-2.25.0/css/uikit.css"/>
 <body>
 <div id="page1"></div>
-<form class="uk-form uk-form-horizontal" action="addUser">
+<form class="uk-form uk-form-horizontal" action="addUser" method="post">
     <fieldset>
         <div class="uk-form-row">
             <label class="uk-form-label  self-label" for="">用户名：</label>
@@ -32,12 +32,39 @@
 </form>
 
 <script type="text/javascript">
-    $("#loginBtn").click(function () {
+  $("#loginBtn").click(function () {
         if ($("form").valid()){
-            $("form").submit();
+           /* $('form').ajaxForm({
+                success: function(responseText){
+                    alert(responseText);
+                }
+            });*/
+            var form = new FormData($("form ")[0]);
+         /*   $.ajax({
+                url: "/login/adduser",
+                type: "post",
+                data: form,
+                async: true,
+                success: function (res) {
+                    alert(1);
+                }
+            })*/
+            $.ajax({
+                async:false,
+                url: "/login/adduser",
+                data:form,
+                type: "POST",
+                dataType: "json",
+                success: function(result){
+                    alert("成功");
+                },error:function(){
+                    alert("失败");
+                }
+            });
         }
 
     })
+
 </script>
 
 </body>
