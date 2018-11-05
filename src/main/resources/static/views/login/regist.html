@@ -85,7 +85,7 @@
                 success: function (result) {
                     layer.msg('注册成功', {icon: 1});
                 }, error: function (result) {
-                    layer.alert(result.responseText, {icon: 5});
+                    layer.msg(result.responseText, {icon: 5});
                 }
             });
             return false;
@@ -98,7 +98,7 @@
         $.ajax({
             async: false,
             url: "validLoginName",
-            data: loginName,
+            data: {loginName:loginName},
             type: "POST",
             dataType: "json",
             success: function (result) {
