@@ -83,7 +83,7 @@
                 type: "POST",
                 dataType: "json",
                 success: function (result) {
-                    layer.alert('注册成功', {icon: 1});
+                    layer.msg('注册成功', {icon: 1});
                 }, error: function (result) {
                     layer.alert(result.responseText, {icon: 5});
                 }
@@ -102,11 +102,9 @@
             type: "POST",
             dataType: "json",
             success: function (result) {
-                if (!result.success){
-                    $("#loginNameTip").html(result.message);
-                }else {
-                    $("#loginNameTip").html("");
-                }
+                $("#loginNameTip").html("");
+            },error: function (result) {
+                $("#loginNameTip").html(result.responseText);
             }
         });
     })

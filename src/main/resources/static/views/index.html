@@ -56,12 +56,9 @@
                 type: "POST",
                 dataType: "json",
                 success: function (result) {
-                    if (!result.success){
-                        $("#loginTip").html(result.message);
-                    }else {
-                        $("#loginTip").html("");
-                        layer.alert('登陆成功', {icon: 1});
-                    }
+                    $("#loginTip").html("");
+                },error:function (result) {
+                    $("#loginTip").html(result.responseText);
                 }
             });
             return false;

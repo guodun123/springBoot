@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 public class GlobalDefaultExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public ResponseHolder defaultExceptionHandler(HttpServletRequest req, Exception e) {
+    public String defaultExceptionHandler(HttpServletRequest req, Exception e) {
         if (e instanceof BusinessException){
-            return ResponseHolder.buildFailResponse().message(((BusinessException) e).getCode());
+            return ((BusinessException) e).getCode();
         }
         if (e instanceof RuntimeException){
-            return ResponseHolder.buildFailResponse().message("请联系管理员：" +e.getMessage());
+            return "请联系管理员：" +e.getMessage();
         }
         if (e instanceof DataIntegrityViolationException){
-            return ResponseHolder.buildFailResponse().message("数据异常，请联系管理员：" +e.getMessage());
+            return "数据异常，请联系管理员：" +e.getMessage();
         }
-        return ResponseHolder.buildSuccessResponse();
+        return "";
     }
 }
