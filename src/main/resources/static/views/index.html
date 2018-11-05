@@ -4,7 +4,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src=".././js/layui/layui.js"></script>
 <link rel="stylesheet" href=".././js/layui/css/layui.css"/>
-<body>
+<body background="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1541401231&di=2b1a948007e70a91512b9637592a110e&src=http://img17.3lian.com/d/file/201703/10/af3c23bfb5c55952a1b535c83f293944.jpg">
 <fieldset class="layui-elem-field layui-field-newTitle">
 </fieldset>
 
@@ -13,6 +13,7 @@
         <fieldset>
             <fieldset class="layui-elem-field layui-field-newTitle">
             </fieldset>
+            <span style="color: red;margin: 0 auto"id="loginTip"></span>
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">登陆名</label>
@@ -31,7 +32,7 @@
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit="" lay-filter="demo1">登陆</button>
+                    <button class="layui-btn" lay-submit="" lay-filter="login">登陆</button>
                 </div>
                 <fieldset class="layui-elem-field layui-field-newTitle">
                 </fieldset>
@@ -45,6 +46,30 @@
 </form>
 
 <script type="text/javascript">
+    layui.use('form',function () {
+        var form = layui.form;
+        form.on('submit(login)', function (data) {
+            $.ajax({
+                async: false,
+                url: "login/login",
+                data: $(data.form).serialize(),
+                type: "POST",
+                dataType: "json",
+                success: function (result) {
+                    if (!result.success){
+                        $("#loginTip").html(result.obj.message);
+                    }else {
+                        $("#loginTip").html("");
+                        layer.alert('登陆成功', {icon: 1});
+                    }
+                }, error: function (result) {
+                    $("#loginTip").html(result.responseText);
+                    layer.alert(result.responseText, {icon: 5});
+                }
+            });
+            return false;
+        });
+    })
 </script>
 
 </body>

@@ -20,9 +20,9 @@ public class LoginController {
     }
     @RequestMapping("login")
     @ResponseBody
-    public String login(String loginName,String password){
+    public ResponseHolder login(String loginName,String password){
         loginService.checkPassword(loginName,password);
-        return "ok";
+        return ResponseHolder.buildSuccessResponse();
     }
     @RequestMapping("findPassword")
     public ModelAndView findPassword(){
@@ -36,6 +36,12 @@ public class LoginController {
     @ResponseBody
     public ResponseHolder addUser(Login login){
         loginService.adduser(login);
+        return ResponseHolder.buildSuccessResponse();
+    }
+    @RequestMapping("validLoginName")
+    @ResponseBody
+    public ResponseHolder validLoginName(String  loginName){
+        loginService.validLoginName(loginName);
         return ResponseHolder.buildSuccessResponse();
     }
 }

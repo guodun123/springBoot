@@ -12,5 +12,6 @@ public interface LoginService {
 
     Login selectByLoginName(String var1);
     String adduser(Login var1);
+    void  validLoginName(String  loginName);
 }
 

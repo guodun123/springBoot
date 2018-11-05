@@ -28,10 +28,9 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public void checkPassword(String loginName, String password) {
         Login login = this.selectByLoginName(loginName);
-       /* if (password.equals(login.getPassword())) {
-        }*/
-        System.out.println(22);
-
+        if (null == login || !password.equals(login.getPassword())) {
+            throw new RuntimeException("登录名或密码错误!");
+        }
     }
 
     @Override
@@ -46,5 +45,15 @@ public class LoginServiceImpl implements LoginService {
     public String adduser(Login var1) {
         this.insert(var1);
         return null;
+    }
+
+    @Override
+    public void validLoginName(String loginName) {
+        Login login = new Login();
+        login.setLoginName(loginName);
+        List<Login> loginList = loginDAO.selectByContion(login);
+       if (!loginList.isEmpty()){
+           throw new RuntimeException("登陆名已存在!");
+       }
     }
 }
