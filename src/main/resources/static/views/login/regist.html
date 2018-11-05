@@ -2,53 +2,90 @@
 
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src=".././js/uikit-2.25.0/js/uikit.js"></script>
-<link rel="stylesheet" href=".././js/uikit-2.25.0/css/uikit.css"/>
+<script src=".././js/layui/layui.js"></script>
+<link rel="stylesheet" href=".././js/layui/css/layui.css"/>
 <body>
-<div id="page1"></div>
-<form class="uk-form uk-form-horizontal" id="form" action="#" method="post">
-    <fieldset>
-        <div class="uk-form-row">
-            <label class="uk-form-label  self-label" for="">用户名：</label>
-            <input type="text" placeholder="" name = "userName" class="uk-form-danger" required="required">
+<fieldset class="layui-elem-field layui-field-newTitle">
+</fieldset>
+
+<form class="layui-form" id="form" action="#" method="post">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="userName" lay-verify="required" class="layui-input">
+            </div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label self-label" for="">登陆名：</label>
-            <input type="text" placeholder=""  name ="loginName" class="uk-form-success" required="required">
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">登录名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="loginName" lay-verify="required" class="layui-input">
+            </div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label self-label" for="">密码：</label>
-            <input type="password" placeholder="" id="password1" name ="password" class="uk-form-success" required="required">
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline">
+                <input type="text" name="password"  id ='password'lay-verify="required|pass" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label self-label" for="">确认密码：</label>
-            <input type="password" placeholder="" id="password2" name ="password2" class="uk-form-success" required="required">
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">确认密码</label>
+            <div class="layui-input-inline">
+                <input type="text" name="password"  id ='password1'lay-verify="required|pass|checkPass" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux" id="pwTip" style="display: none;"><span style='color:red'></span></div>
         </div>
-        <div class="uk-form-row">
-            <!--<input type="submit" value="注册" id="registBtn1">-->
-            <button class="uk-button" id="registBtn">注册</button>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <button class="layui-btn" lay-submit="" id="registBtn">注册</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
-    </fieldset>
+    </div>
+
 </form>
 
 <script type="text/javascript">
-    let alertView = UIAlertController(title: "提示窗口!", message:"您确定要关闭当前窗口吗?", preferredStyle: .alert)
-  $("#registBtn").click(function () {
-       var form = $("#form").serializeArray();
-        $.ajax({
-            async:false,
-            url: "addUser",
-            data:form,
-            type: "POST",
-            dataType: "json",
-            success: function(result){
+  layui.use('form', function(){
+      var form = layui.form
+          ,layer = layui.layer;
+      //自定义验证规则
+      form.verify({
+         pass: [/(.+){6,12}$/, '密码必须6到12位'],
+          checkPass:function (value) {
+              var p1 = $("#password").val();
+              if (value!= p1){
+                 return "两次密码不一致,请重新输入";
+              }
+          }
+      });
 
-            },error:function(result){
-                alert("失败");
-            }
-        });
-    })
+      //监听提交
+      form.on('submit(demo1)', function(data){
+          $.ajax({
+              async:false,
+              url: "addUser",
+              data:$(data.form).serialize(),
+              type: "POST",
+              dataType: "json",
+              success: function(result){
+                  layer.alert('注册成功', {icon: 1});
+              },error:function(result){
+                  layer.alert(result.responseText, {icon: 5});
+              }
+          });
+          return false;
+      });
 
+  });
 </script>
 
 </body>
