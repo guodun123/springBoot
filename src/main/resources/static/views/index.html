@@ -57,14 +57,11 @@
                 dataType: "json",
                 success: function (result) {
                     if (!result.success){
-                        $("#loginTip").html(result.obj.code);
+                        $("#loginTip").html(result.message);
                     }else {
                         $("#loginTip").html("");
                         layer.alert('登陆成功', {icon: 1});
                     }
-                }, error: function (result) {
-                    $("#loginTip").html(result.responseText);
-                    layer.alert(result.responseText, {icon: 5});
                 }
             });
             return false;
