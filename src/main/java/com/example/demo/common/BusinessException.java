@@ -1,5 +1,9 @@
 package com.example.demo.common;
 
+/**
+ * 业务异常
+ * 一般用来对业务数据校验抛出的异常
+ */
 public class BusinessException extends RuntimeException {
     private String code;
     private String[] params;

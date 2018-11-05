@@ -102,8 +102,9 @@
             type: "POST",
             dataType: "json",
             success: function (result) {
+                debugger;
                 if (!result.success){
-                    $("#loginNameTip").html(result.obj.message);
+                    $("#loginNameTip").html(result.obj.code);
                 }else {
                     $("#loginNameTip").html("");
                 }

@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.common.BusinessException;
 import com.example.demo.dao.LoginDAO;
 import com.example.demo.model.Login;
 import com.example.demo.service.LoginService;
@@ -29,7 +30,7 @@ public class LoginServiceImpl implements LoginService {
     public void checkPassword(String loginName, String password) {
         Login login = this.selectByLoginName(loginName);
         if (null == login || !password.equals(login.getPassword())) {
-            throw new RuntimeException("登录名或密码错误!");
+            throw new BusinessException("登录名或密码错误!");
         }
     }
 
@@ -53,7 +54,7 @@ public class LoginServiceImpl implements LoginService {
         login.setLoginName(loginName);
         List<Login> loginList = loginDAO.selectByContion(login);
        if (!loginList.isEmpty()){
-           throw new RuntimeException("登陆名已存在!");
+           throw new BusinessException("登陆名已存在!");
        }
     }
 }

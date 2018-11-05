@@ -57,7 +57,7 @@
                 dataType: "json",
                 success: function (result) {
                     if (!result.success){
-                        $("#loginTip").html(result.obj.message);
+                        $("#loginTip").html(result.obj.code);
                     }else {
                         $("#loginTip").html("");
                         layer.alert('登陆成功', {icon: 1});

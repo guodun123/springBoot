@@ -1,5 +1,6 @@
 package com.example.demo.common;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,6 +13,15 @@ public class GlobalDefaultExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public ResponseHolder defaultExceptionHandler(HttpServletRequest req, Exception e) {
-        return ResponseHolder.buildFailResponse().obj(e);
+        if (e instanceof BusinessException){
+            return ResponseHolder.buildFailResponse().obj(e);
+        }
+        if (e instanceof RuntimeException){
+            return ResponseHolder.buildFailResponse().message("请联系管理员：" +e);
+        }
+        if (e instanceof DataIntegrityViolationException){
+            return ResponseHolder.buildFailResponse().message("数据异常，请联系管理员：" +e);
+        }
+        return ResponseHolder.buildSuccessResponse();
     }
 }
