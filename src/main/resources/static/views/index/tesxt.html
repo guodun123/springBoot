@@ -1,0 +1,44 @@
+<html>
+
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src=".././js/layui/layui.js"></script>
+<link rel="stylesheet" href=".././js/layui/css/layui.css"/>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body background="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1541401231&di=2b1a948007e70a91512b9637592a110e&src=http://img17.3lian.com/d/file/201703/10/af3c23bfb5c55952a1b535c83f293944.jpg">
+<form class="layui-form" action="login" method="post">
+    <ul class="layui-nav">
+        <li class="layui-nav-item">
+            <a href="">控制台<span class="layui-badge">9</span></a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">个人中心<span class="layui-badge-dot"></span></a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="" id="tsxta"><img src="//t.cn/RCzsdCq" class="layui-nav-img">{{a}}</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">修改信息</a></dd>
+                <dd><a href="javascript:;">安全管理</a></dd>
+                <dd><a href="javascript:;">退了</a></dd>
+            </dl>
+        </li>
+    </ul>
+
+</form>
+
+<script type="text/javascript">
+    layui.use('element', function(){
+        var element = layui.element;
+
+        //…
+    });
+    var app6 = new Vue({
+        el: '#tsxta',
+        data: {
+            a: '${a}'
+        }
+    })
+</script>
+
+</body>
+</html>

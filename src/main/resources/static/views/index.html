@@ -57,6 +57,7 @@
                 dataType: "json",
                 success: function (result) {
                     $("#loginTip").html("");
+                    window.location.href="/login/a";
                 },error:function (result) {
                     $("#loginTip").html(result.responseText);
                 }

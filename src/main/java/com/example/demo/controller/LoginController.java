@@ -5,6 +5,7 @@ import com.example.demo.model.Login;
 import com.example.demo.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,5 +44,11 @@ public class LoginController {
     public ResponseHolder validLoginName(String  loginName){
         loginService.validLoginName(loginName);
         return ResponseHolder.buildSuccessResponse();
+    }
+
+    @RequestMapping("a")
+    public ModelAndView a (Model model){
+        model.addAttribute("a","asd");
+        return new ModelAndView("index/tesxt");
     }
 }
