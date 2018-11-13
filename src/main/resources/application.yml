@@ -5,19 +5,30 @@ spring:
     username: root
     password: admin
     driver-class-name: com.mysql.jdbc.Driver
-  mvc:
-    view:
-      # 定位模板的目录
-      prefix: /views/
-      # 给返回的页面添加后缀名
-      suffix: .html
+#  mvc:
+#    view:
+#      # 定位模板的目录
+#      prefix: /views/
+#      # 给返回的页面添加后缀名
+#      suffix: .html
 
-#  thymeleaf:
-#    cache: false
-#    encoding: UTF-8
-#    servlet:
-#      content-type: text/html
-#    mode: LEGACYHTML5
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    mode: LEGACYHTML5
+    prefix: classpath:/static/views/
+    suffix: .html
+
+#  spring.resources.chain.strategy.content.enabled=true
+#  spring.resources.chain.strategy.content.paths=/**
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
 
 
 mybatis:
