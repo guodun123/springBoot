@@ -16,9 +16,9 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
     @RequestMapping("/")
-    public String loginFtl(Model model){
+    public ModelAndView loginFtl(Model model){
         model.addAttribute("zhangsan","lisi");
-        return "index";
+        return new ModelAndView("index");
     }
     @RequestMapping("login")
     @ResponseBody
