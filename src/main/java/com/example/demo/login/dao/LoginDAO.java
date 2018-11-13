@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.example.demo.login.dao;
 
 import com.example.demo.model.Login;
 import org.apache.ibatis.annotations.Param;
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
 @Repository
 public interface LoginDAO {
     List<Login> selectByContion(Login var1);

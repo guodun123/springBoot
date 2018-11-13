@@ -1,7 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.common.BusinessException;
-import com.example.demo.dao.LoginDAO;
+import com.example.demo.login.dao.LoginDAO;
 import com.example.demo.model.Login;
 import com.example.demo.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class LoginServiceImpl implements LoginService {
         Login login = new Login();
         login.setLoginName(loginName);
         List<Login> loginList = loginDAO.selectByContion(login);
-        return !loginList.isEmpty() ? (Login)loginList.get(0) : null;
+        return !loginList.isEmpty() ? loginList.get(0) : null;
     }
 
     @Override

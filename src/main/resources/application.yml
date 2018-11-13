@@ -12,6 +12,10 @@ spring:
 #      # 给返回的页面添加后缀名
 #      suffix: .html
 
+  # 选择加载不同环境的配置文件
+  profiles:
+    active: dev  #生产环境下改成“prod”
+
   thymeleaf:
     cache: false
     encoding: UTF-8
