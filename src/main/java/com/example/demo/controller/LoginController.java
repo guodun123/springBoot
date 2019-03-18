@@ -26,11 +26,11 @@ public class LoginController {
     @RequestMapping("login")
     @ResponseBody
     public ModelAndView login(String loginName,String password){
-        jedisPoolUtil.set("a","b",555555);
-        Object obj = jedisPoolUtil.get("a");
-        System.out.println(obj.toString());
+        //jedisPoolUtil.set("a","b",555555);
+        //Object obj = jedisPoolUtil.get("a");
+        //System.out.println(obj.toString());
         loginService.checkPassword(loginName,password);
-        return new ModelAndView("menu");
+        return new ModelAndView("index/menu");
     }
     @RequestMapping("findPassword")
     public ModelAndView findPassword(){
@@ -63,5 +63,10 @@ public class LoginController {
     public ModelAndView b (Model model){
         model.addAttribute("a","asd");
         return new ModelAndView("index/menu");
+    }
+    @RequestMapping("c")
+    public ModelAndView c (Model model){
+        model.addAttribute("a","asd");
+        return new ModelAndView("login/login");
     }
 }
