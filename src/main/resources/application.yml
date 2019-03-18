@@ -17,10 +17,13 @@ spring:
     active: dev  #生产环境下改成“prod”
 
   thymeleaf:
+    #开发时关闭缓存,不然没法看到实时页面
     cache: false
     encoding: UTF-8
     servlet:
       content-type: text/html
+      #实际项目中可能会有不太严格的HTML格式，此时设置mode=HTML5将会对非严格的报错
+      #spring.thymeleaf.mode的默认值是HTML5，其实是一个很严格的检查，改为LEGACYHTML5可以得到一个可能更友好亲切的格式要求。
     mode: LEGACYHTML5
     prefix: classpath:/static/views/
     suffix: .html
