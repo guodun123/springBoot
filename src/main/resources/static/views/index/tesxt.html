@@ -6,39 +6,68 @@
 <link rel="stylesheet" href=".././js/layui/css/layui.css"/>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <body background="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1541401231&di=2b1a948007e70a91512b9637592a110e&src=http://img17.3lian.com/d/file/201703/10/af3c23bfb5c55952a1b535c83f293944.jpg">
-<form class="layui-form" action="login" method="post">
-    <ul class="layui-nav">
-        <li class="layui-nav-item">
-            <a href="">控制台<span class="layui-badge">9</span></a>
-        </li>
-        <li class="layui-nav-item">
-            <a href="">个人中心<span class="layui-badge-dot"></span></a>
-        </li>
-        <li class="layui-nav-item">
-            <a href="" id="tsxta"><img src="//t.cn/RCzsdCq" class="layui-nav-img">{{a}}</a>
-            <dl class="layui-nav-child">
-                <dd><a href="javascript:;">修改信息</a></dd>
-                <dd><a href="javascript:;">安全管理</a></dd>
-                <dd><a href="javascript:;">退了</a></dd>
-            </dl>
-        </li>
-    </ul>
+    <div>
+        <ul class="layui-nav" id="menuHeader">
+            <li class="layui-nav-item">
+                <a href="">控制台<span class="layui-badge">9</span></a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="">个人中心<span class="layui-badge-dot"></span></a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="" id="tsxta"><img src="//t.cn/RCzsdCq" class="layui-nav-img">{{a}}</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;">修改信息</a></dd>
+                    <dd><a href="javascript:;">安全管理</a></dd>
+                    <dd><a href="javascript:;">退了</a></dd>
+                </dl>
+            </li>
+        </ul>
 
-</form>
+    </div>
+    <div>
+        <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="menuDemo" style="margin-right: 10px;">
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;">默认展开</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;">选项一</a></dd>
+                    <dd><a href="javascript:;">选项二</a></dd>
+                    <dd><a href="javascript:;">选项三</a></dd>
+                    <dd><a href="">跳转项</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">解决方案</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">移动模块</a></dd>
+                    <dd><a href="">后台模版</a></dd>
+                    <dd><a href="">电商平台</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">云市场</a></li>
+            <li class="layui-nav-item"><a href="">社区</a></li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        layui.use('element', function () {
+            var element = layui.element;
 
-<script type="text/javascript">
-    layui.use('element', function(){
-        var element = layui.element;
+            //…
+        });
+        var app6 = new Vue({
+            el: '#tsxta',
+            data: {
+                a: '${a}'
+            }
+        })
 
-        //…
-    });
-    var app6 = new Vue({
-        el: '#tsxta',
-        data: {
-            a: '${a}'
-        }
-    })
-</script>
-
+        layui.use('element', function () {
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+            //监听导航点击
+            element.on('nav(menuDemo)', function (elem) {
+                layer.msg(elem.text());
+            });
+        });
+    </script>
 </body>
 </html>
