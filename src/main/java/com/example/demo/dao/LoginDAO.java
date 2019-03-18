@@ -1,4 +1,4 @@
-package com.example.demo.login.dao;
+package com.example.demo.dao;
 
 import com.example.demo.model.Login;
 import org.apache.ibatis.annotations.Param;

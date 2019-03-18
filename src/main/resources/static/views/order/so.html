@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src=".././js/layui/layui.js"></script>
+<link rel="stylesheet" href=".././js/layui/css/layui.css"/>
+<body background="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1541401231&di=2b1a948007e70a91512b9637592a110e&src=http://img17.3lian.com/d/file/201703/10/af3c23bfb5c55952a1b535c83f293944.jpg">
+<fieldset class="layui-elem-field layui-field-newTitle">
+</fieldset>
+
+<table class="layui-hide" id="soOrderList"></table>
+
+<script type="text/javascript"  th:inline="javascript">
+
+    layui.use('table', function(){
+        var table = layui.table;
+
+        table.render({
+            elem: '#soOrderList'
+            ,url:'/soOrder/table/user/'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [[
+                /*{field:'id', width:80, title: 'ID', sort: true}
+                ,*/{field:'orderCode', width:80, title: '订单编号'}
+                ,{field:'receiver', width:80, title: '收货人', sort: true}
+                ,{field:'address', width:80, title: '收货地址'}
+                ,{field:'createTime', title: '创建时间', width: '30%', minWidth: 100} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                ,{field:'price', title: '销售金额', sort: true}
+                ,{field:'costPrice', title: '成本金额', sort: true}
+                ,{field:'profit', title: '盈利'}
+                ,{field:'wealth', width:137, title: '财富', sort: true}
+            ]]
+        });
+    });
+</script>
+
+</body>
+</html>
