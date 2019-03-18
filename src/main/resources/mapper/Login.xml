@@ -59,9 +59,6 @@
         update login_info
         <set>
             <trim prefix="(" suffix=")" suffixOverrides=",">
-                <if test="id!= null">
-                    id=#{id},
-                </if>
                 <if test="loginName!= null and loginName != ''">
                     login_name=#{loginName},
                 </if>
@@ -79,9 +76,10 @@
                 </if>
             </trim>
         </set>
+        where id=#{id}
     </update>
 
-    <select id="selectByContion" parameterType="com.example.demo.model.Login" resultMap="BaseResultMap">
+    <select id="selectByCondition" parameterType="com.example.demo.model.Login" resultMap="BaseResultMap">
         select <include refid="base_column"/>
         from login_info
         <where>

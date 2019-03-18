@@ -33,6 +33,11 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
+    public List<Login> selectByCondition(Login condition) {
+        return null;
+    }
+
+    @Override
     public void checkPassword(String loginName, String password) {
         Login login = this.selectByLoginName(loginName);
         if (null == login || !password.equals(login.getPassword())) {
@@ -44,21 +49,20 @@ public class LoginServiceImpl implements LoginService {
     public Login selectByLoginName(String loginName) {
         Login login = new Login();
         login.setLoginName(loginName);
-        List<Login> loginList = loginDAO.selectByContion(login);
+        List<Login> loginList = loginDAO.selectByCondition(login);
         return !loginList.isEmpty() ? loginList.get(0) : null;
     }
 
     @Override
-    public String adduser(Login var1) {
+    public void addUser(Login var1) {
         this.insert(var1);
-        return null;
     }
 
     @Override
     public void validLoginName(String loginName) {
         Login login = new Login();
         login.setLoginName(loginName);
-        List<Login> loginList = loginDAO.selectByContion(login);
+        List<Login> loginList = loginDAO.selectByCondition(login);
        if (!loginList.isEmpty()){
            throw new BusinessException("登陆名已存在!");
        }
