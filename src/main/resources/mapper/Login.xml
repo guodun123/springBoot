@@ -13,7 +13,7 @@
         id,login_name,user_name,password,password,update_time,create_time
     </sql>
     <insert id="insert" parameterType="com.example.demo.model.Login" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
-        insert into login_info
+        insert into user_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!= null">
                 id,
@@ -56,7 +56,7 @@
         </trim>
     </insert>
     <update id="update" parameterType="com.example.demo.model.Login">
-        update login_info
+        update user_info
         <set>
             <trim prefix="(" suffix=")" suffixOverrides=",">
                 <if test="loginName!= null and loginName != ''">
@@ -81,7 +81,7 @@
 
     <select id="selectByCondition" parameterType="com.example.demo.model.Login" resultMap="BaseResultMap">
         select <include refid="base_column"/>
-        from login_info
+        from user_info
         <where>
             <if test="id!= null">
                and id=#{id}
