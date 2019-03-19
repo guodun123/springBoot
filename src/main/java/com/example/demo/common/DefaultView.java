@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class DefaultView extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("").setViewName("index");
+        registry.addViewController("").setViewName("login/login");
         //优先级最高优先级，当controller存在相同名字是优先此处
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
         super.addViewControllers(registry);
