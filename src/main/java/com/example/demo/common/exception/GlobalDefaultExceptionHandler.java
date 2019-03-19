@@ -1,4 +1,4 @@
-package com.example.demo.common;
+package com.example.demo.common.exception;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,6 +15,9 @@ public class GlobalDefaultExceptionHandler {
     public String defaultExceptionHandler(HttpServletRequest req, Exception e) {
         if (e instanceof BusinessException){
             return ((BusinessException) e).getCode();
+        }
+        if (e instanceof LoginException){
+            return "login/login";
         }
         if (e instanceof RuntimeException){
             return "请联系管理员：" +e.getMessage();

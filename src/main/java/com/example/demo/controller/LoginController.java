@@ -16,8 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
     @Autowired
     private LoginService loginService;
-    @Autowired
-    private JedisPoolUtil jedisPoolUtil;
     @RequestMapping("/")
     public ModelAndView loginFtl(Model model){
         model.addAttribute("zhangsan","lisi");
@@ -26,9 +24,7 @@ public class LoginController {
     @RequestMapping("login")
     @ResponseBody
     public ModelAndView login(String loginName,String password){
-        //jedisPoolUtil.set("a","b",555555);
-        //Object obj = jedisPoolUtil.get("a");
-        //System.out.println(obj.toString());
+        JedisPoolUtil.set("loginName","loginName",555555);
         loginService.checkPassword(loginName,password);
         return new ModelAndView("index/menu");
     }

@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.common.BusinessException;
+import com.example.demo.common.exception.BusinessException;
 import com.example.demo.dao.LoginDAO;
 import com.example.demo.model.Login;
 import com.example.demo.service.LoginService;

@@ -12,47 +12,46 @@ import java.io.ObjectOutputStream;
 
 @Component
 public class JedisPoolUtil {
-    @Autowired
-    private JedisPool jedisPool;
-
-    private   Jedis getJedis(){
-      return jedisPool.getResource();
+    private static Jedis getJedis() {
+        JedisPool jedisPool = new JedisPool();
+        return jedisPool.getResource();
     }
 
-    public  String set(String key, Object value, Integer timeout) {
+    public static String set(String key, Object value, Integer timeout) {
         Jedis jedis = null;
         String result = null;
 
         try {
-            jedis = this.getJedis();
-            result = jedis.set(key.getBytes(), this.objectToBytes(value));
+            jedis = getJedis();
+            result = jedis.set(key.getBytes(), objectToBytes(value));
             if (null != timeout) {
                 jedis.expire(key, timeout);
-            }else {
+            } else {
                 jedis.expire(key, 86400);
             }
         } finally {
-            this.close(jedis);
+            close(jedis);
         }
 
         return result;
     }
 
-    public Object get(String key) {
+    public static Object get(String key) {
         Jedis jedis = null;
 
         Object result;
         try {
-            jedis = this.getJedis();
+            jedis = getJedis();
             byte[] str = jedis.get(key.getBytes());
             result = str == null ? null : SerializationUtils.deserialize(str);
         } finally {
-            this.close(jedis);
+            close(jedis);
         }
 
         return result;
     }
-    private byte[] objectToBytes(Object obj) {
+
+    private static byte[] objectToBytes(Object obj) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
         try {
@@ -67,7 +66,8 @@ public class JedisPoolUtil {
             throw new RuntimeException(var5);
         }
     }
-    private void close(Jedis jedis) {
+
+    private static void close(Jedis jedis) {
         if (jedis != null) {
             jedis.close();
         }

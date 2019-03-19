@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 
-import com.example.demo.common.BusinessException;
+import com.example.demo.common.exception.BusinessException;
 import com.example.demo.common.baseclass.BaseService;
 import com.example.demo.model.Login;
 
