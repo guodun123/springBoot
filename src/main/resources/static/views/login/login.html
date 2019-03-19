@@ -61,9 +61,7 @@
    /* layui.use(['layer', 'form'], function() {
         var form = layui.form;
 
-        $('#forgot').on('click', function() {
-            layer.msg('请联系管理员.');
-        });
+
         //监听提交
         form.on('submit(login_hash)', function(data) {
             $.ajax({
@@ -89,6 +87,15 @@
 
    layui.use('form',function () {
        var form = layui.form;
+
+       //忘记密码
+       $('#forgot').on('click', function() {
+           layer.msg('请联系管理员.',{"icon":5},{
+               "skin":"ss",
+               "time":5000
+           });
+       });
+        // 提交
        form.on('submit(login_hash)', function (data) {
            $.ajax({
                async: false,
@@ -99,7 +106,10 @@
                success: function (result) {
                    window.location.href="/login/a";
                },error:function (result) {
-                   layer.msg(result.responseText);
+                   layer.msg(result.responseText,{"icon":5},{
+                       "skin":"ss",
+                       "time":5000
+                   });
                }
            });
            return false;
