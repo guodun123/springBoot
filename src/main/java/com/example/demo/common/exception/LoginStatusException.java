@@ -1,14 +1,14 @@
 package com.example.demo.common.exception;
 
-public class LoginException extends RuntimeException {
+public class LoginStatusException extends Exception {
     private String code;
     private String[] params;
 
-    public LoginException(String code) {
+    public LoginStatusException(String code) {
         this.code = code;
     }
 
-    public LoginException(String code, String... params) {
+    public LoginStatusException(String code, String... params) {
         this.code = code;
         this.params = params;
     }
