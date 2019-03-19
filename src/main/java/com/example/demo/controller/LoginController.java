@@ -18,15 +18,12 @@ public class LoginController {
     private LoginService loginService;
     @RequestMapping("/")
     public ModelAndView loginFtl(Model model){
-        model.addAttribute("zhangsan","lisi");
-        return new ModelAndView("index");
+        return new ModelAndView("login/login");
     }
     @RequestMapping("login")
-    @ResponseBody
-    public ModelAndView login(String loginName,String password){
-        JedisPoolUtil.set("loginName","loginName",555555);
+    public void login(String loginName,String password){
+        //JedisPoolUtil.set("LoginName","loginName",555555);
         loginService.checkPassword(loginName,password);
-        return new ModelAndView("index/menu");
     }
     @RequestMapping("findPassword")
     public ModelAndView findPassword(){
@@ -51,18 +48,11 @@ public class LoginController {
     }
 
     @RequestMapping("a")
-    public ModelAndView a (Model model){
-        model.addAttribute("a","asd");
-        return new ModelAndView("index/tesxt");
-    }
-    @RequestMapping("b")
-    public ModelAndView b (Model model){
-        model.addAttribute("a","asd");
+    public ModelAndView a(Model model){
         return new ModelAndView("index/menu");
     }
-    @RequestMapping("c")
-    public ModelAndView c (Model model){
-        model.addAttribute("a","asd");
-        return new ModelAndView("login/login");
+    @RequestMapping("b")
+    public ModelAndView b(Model model){
+        return new ModelAndView("index/tesxt");
     }
 }

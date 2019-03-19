@@ -17,9 +17,9 @@ public class MyIntercept implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception,LoginStatusException {
         Object obj = JedisPoolUtil.get("LoginName");
-        if (null == obj){
+       /* if (null == obj){
             throw new LoginStatusException("未登录");
-        }
+        }*/
         return true;
     }
     @Override

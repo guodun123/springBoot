@@ -101,8 +101,8 @@
                async: false,
                url: "login",
                data: $(data.form).serialize(),
-               type: "POST",
-               dataType: "json",
+               type: "post",
+               dataType: "text",
                success: function (result) {
                    window.location.href="/login/a";
                },error:function (result) {
