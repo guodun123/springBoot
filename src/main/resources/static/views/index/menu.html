@@ -31,13 +31,65 @@
         </li>
     </ul>
 </div>
+<div style="margin-top: 5px;">
+    <div class="layui-tab layui-tab-card" lay-allowclose="true" lay-filter="demo" >
+        <ul class="layui-tab-title">
+            <li class="layui-this">网站设置</li>
+            <li>用户管理</li>
+            <li>权限分配</li>
+            <li>商品管理</li>
+            <li>订单管理</li>
+        </ul>
+        <div class="layui-tab-content" style="height: 100px;">
+            <div class="layui-tab-item layui-show">默认宽度是相对于父元素100%适应的，你也可以固定宽度。</div>
+            <div class="layui-tab-item" lay-id = "2">2</div>
+            <div class="layui-tab-item" lay-id = "3">3</div>
+            <div class="layui-tab-item" lay-id = "4">4</div>
+            <div class="layui-tab-item" lay-id = "5">5</div>
+            <div class="layui-tab-item" lay-id = "6">6</div>
+        </div>
+    </div>
+    <div class="site-demo-button" style="margin-bottom: 0;">
+        <button class="layui-btn site-demo-active" data-type="tabAdd">新增Tab项</button>
+        <button class="layui-btn site-demo-active" data-type="tabDelete">删除：商品管理</button>
+        <button class="layui-btn site-demo-active" data-type="tabChange">切换到：用户管理</button>
+    </div>
+</div>
 
 <script src="js/layui/layui.all.js"></script>
 
 <script>
     //JavaScript代码区域
     layui.use('element', function () {
-        var element = layui.element;
+        var $ = layui.jquery
+            ,element = layui.element;
+
+        //触发事件
+        var active = {
+            tabAdd: function(){
+                //新增一个Tab项
+                element.tabAdd('demo', {
+                    title: '新选项'+ (Math.random()*1000|0) //用于演示
+                    ,content: '内容'+ (Math.random()*1000|0)
+                    ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+                })
+            }
+            ,tabDelete: function(othis){
+                //删除指定Tab项
+                element.tabDelete('demo', '4'); //删除：“商品管理”
+
+
+                othis.addClass('layui-btn-disabled');
+            }
+            ,tabChange: function(){
+                //切换到指定Tab项
+                element.tabChange('demo', '5'); //切换到：用户管理
+            }
+        };
+        $('.site-demo-active').on('click', function(){
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
     });
 </script>
 </body>
