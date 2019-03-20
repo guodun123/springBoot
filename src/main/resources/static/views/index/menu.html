@@ -15,10 +15,10 @@
 <body class="layui-layout-body">
     <!-- 菜单展示列-->
     <ul class="layui-nav" >
-        <li class="layui-nav-item" th:each="menus,menuStatr:${menus}">
-            <a href="" th:text="${menus.menuName}"></a>
+        <li class="layui-nav-item" th:each="menus,menuStatr:${menus}" >
+            <a href="#" th:text="${menus.menuName}" ></a>
             <dl class="layui-nav-child" th:each="childs,childStart:${menus.childs}">
-                <dd><a href="javascript:;" th:text="${childs.menuName}"></a></dd>
+                <dd ><a href="javascript:;" class="my-menu-class" th:text="${childs.menuName}" th:id="${childs.menuId}"></a></dd>
             </dl>
         </li>
         </li>
@@ -44,18 +44,12 @@
 
 <!-- 界面内容展示列-->
 <div style="margin-top: 5px;">
-    <div class="layui-tab layui-tab-card" lay-allowclose="true" lay-filter="demo">
+    <div class="layui-tab layui-tab-card" lay-allowclose="true" lay-filter="homeFilter">
         <ul class="layui-tab-title">
             <li class="layui-this">首页</li>
-
         </ul>
         <div class="layui-tab-content" style="height: 100px;">
             <div class="layui-tab-item layui-show">首页的展示信息</div>
-            <div class="layui-tab-item" lay-id="2">2</div>
-            <div class="layui-tab-item" lay-id="3">3</div>
-            <div class="layui-tab-item" lay-id="4">4</div>
-            <div class="layui-tab-item" lay-id="5">5</div>
-            <div class="layui-tab-item" lay-id="6">6</div>
         </div>
     </div>
     <div class="site-demo-button" style="margin-bottom: 0;">
@@ -75,27 +69,35 @@
 
         //触发事件
         var active = {
-            tabAdd: function () {
+            tabAdd: function (title,id,url) {
                 //新增一个Tab项
-                element.tabAdd('demo', {
-                    title: '新选项' + (Math.random() * 1000 | 0) //用于演示
-                    , content: '内容' + (Math.random() * 1000 | 0)
-                    , id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
-                })
+
             }
             , tabDelete: function (othis) {
                 //删除指定Tab项
-                element.tabDelete('demo', '4'); //删除：“商品管理”
+                element.tabDelete('homeFilter', '4'); //删除：“商品管理”
                 othis.addClass('layui-btn-disabled');
             }
             , tabChange: function () {
                 //切换到指定Tab项
-                element.tabChange('demo', '5'); //切换到：用户管理
+
             }
         };
-        $('.site-demo-active').on('click', function () {
-            var othis = $(this), type = othis.data('type');
-            active[type] ? active[type].call(this, othis) : '';
+        $('.my-menu-class').on('click', function () {
+            var othis = $(this),id = $(othis).attr("id"),title = $(othis).text();
+            //判断tab是否存在
+            if ( $(".layui-tab-title li[lay-id="+id+"]").length > 0 ) {
+                element.tabChange('homeFilter', id);
+                return;
+            }
+            //新增一个tab页
+            element.tabAdd('homeFilter', {
+                title: title,
+                content: "login/login",
+                id: id
+            });
+            //切换到新增的tab页
+            element.tabChange('homeFilter', id);
         });
     });
 </script>
