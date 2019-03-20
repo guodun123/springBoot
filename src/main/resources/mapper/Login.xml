@@ -55,6 +55,7 @@
             </if>
         </trim>
     </insert>
+
     <update id="update" parameterType="com.example.demo.model.Login">
         update user_info
         <set>
@@ -103,4 +104,5 @@
             </if>
         </where>
     </select>
+
 </mapper>

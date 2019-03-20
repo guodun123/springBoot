@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.MenuPermissionsDAO">
+    <resultMap id="BaseResultMap" type="com.example.demo.model.MenuPermissions">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+        <result column="level" property="level" jdbcType="INTEGER"/>
+        <result column="permissions_no" property="permissionsNo" jdbcType="VARCHAR"/>
+        <result column="menu_name" property="menuName" jdbcType="VARCHAR"/>
+        <result column="menu_url" property="menuUrl" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="base_column">
+        id,user_id,menu_id
+    </sql>
+    <insert id="insert" parameterType="com.example.demo.model.MenuPermissions" keyColumn="id" keyProperty="id"
+            useGeneratedKeys="true">
+        insert into menu_permissions
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!= null">
+                id,
+            </if>
+            <if test="parentId!= null">
+                parent_id,
+            </if>
+            <if test="level!= null">
+                level,
+            </if>
+            <if test="permissionsNo!= null">
+                permissions_no,
+            </if>
+            <if test="menuName!= null">
+                menu_name,
+            </if>
+            <if test="menuUrl!= null">
+                menu_url,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id!= null">
+                #{id},
+            </if>
+            <if test="parentId!= null">
+                #{parentId},
+            </if>
+            <if test="level!= null">
+                #{level},
+            </if>
+            <if test="permissionsNo!= null">
+                #{permissionsNo},
+            </if>
+            <if test="menuName!= null">
+                #{menuName},
+            </if>
+            <if test="menuUrl!= null">
+                #{menuUrl},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByCondition" parameterType="com.example.demo.model.MenuPermissions" resultMap="BaseResultMap">
+        select
+        <include refid="base_column"/>
+        from menu_permissions
+        <where>
+            <if test="id!= null">
+                and id = #{id}
+            </if>
+            <if test="parentId!= null">
+                and parent_id = #{parentId}
+            </if>
+            <if test="level!= null">
+                and level = #{level}
+            </if>
+            <if test="permissionsNo!= null">
+                and permissions_no = #{permissionsNo}
+            </if>
+            <if test="menuName!= null">
+                and menu_name = #{menuName}
+            </if>
+            <if test="menuUrl!= null">
+                and menu_url = #{menuUrl}
+            </if>
+        </where>
+    </select>
+
+    <update id="update" parameterType="com.example.demo.model.MenuPermissions">
+        update user_info
+        <set>
+            <if test="parentId!= null">
+                parent_id = #{parentId},
+            </if>
+            <if test="level!= null">
+                level = #{level},
+            </if>
+            <if test="permissionsNo!= null">
+                permissions_no = #{permissionsNo},
+            </if>
+            <if test="menuName!= null">
+                menu_name = #{menuName},
+            </if>
+            <if test="menuUrl!= null">
+                menu_url = #{menuUrl},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+      delete from menu_permissions where id = #{id}
+    </delete>
+
+</mapper>
