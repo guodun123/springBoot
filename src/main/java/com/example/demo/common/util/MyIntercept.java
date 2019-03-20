@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *自定义拦截器
@@ -16,10 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 public class MyIntercept implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception,LoginStatusException {
-        Object obj = JedisPoolUtil.get("LoginName");
-       /* if (null == obj){
-            throw new LoginStatusException("未登录");
-        }*/
+        HttpSession session = request.getSession();
+        Object loginName = session.getAttribute("LoginName");
+        Object userId = session.getAttribute("UserId");
         return true;
     }
     @Override

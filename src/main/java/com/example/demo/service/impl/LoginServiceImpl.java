@@ -1,13 +1,18 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.common.exception.BusinessException;
+import com.example.demo.common.util.JedisPoolUtil;
 import com.example.demo.dao.LoginDAO;
 import com.example.demo.model.Login;
 import com.example.demo.service.LoginService;
 import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -38,11 +43,16 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public void checkPassword(String loginName, String password) {
+    public void checkPassword(String loginName, String password, HttpServletRequest request, HttpServletResponse response) {
         Login login = this.selectByLoginName(loginName);
         if (null == login || !password.equals(login.getPassword())) {
             throw new BusinessException("登录名或密码错误!");
         }
+        HttpSession session = request.getSession();
+        session.setAttribute("LoginName",loginName);
+        session.setAttribute("UserId",login.getId());
+        JedisPoolUtil.set("LoginName"+login.getId(),loginName,555555);
+        JedisPoolUtil.set("UserId"+loginName,login.getId(),555555);
     }
 
     @Override

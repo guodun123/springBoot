@@ -4,6 +4,7 @@ import com.example.demo.common.ResponseHolder;
 import com.example.demo.common.util.JedisPoolUtil;
 import com.example.demo.model.Login;
 import com.example.demo.service.LoginService;
+import com.example.demo.service.UserPermissionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 @RequestMapping("login")
 public class LoginController {
     @Autowired
     private LoginService loginService;
+    @Autowired
+    private UserPermissionsService userPermissionsService;
 
     @RequestMapping("/")
     public ModelAndView loginFtl(Model model) {
@@ -23,9 +30,8 @@ public class LoginController {
     }
 
     @RequestMapping("login")
-    public void login(String loginName, String password) {
-        //JedisPoolUtil.set("LoginName","loginName",555555);
-        loginService.checkPassword(loginName, password);
+    public void login(String loginName, String password, HttpServletRequest request, HttpServletResponse response) {
+        loginService.checkPassword(loginName, password,request,response);
     }
 
     @RequestMapping("findPassword")
@@ -54,7 +60,7 @@ public class LoginController {
 
     @RequestMapping("a")
     public ModelAndView a(Model model) {
-
+        //userPermissionsService.findUserPermissionByUserId(JedisPoolUtil.get())
         return new ModelAndView("index/menu");
     }
 
