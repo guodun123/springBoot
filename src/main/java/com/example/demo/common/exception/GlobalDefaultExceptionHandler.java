@@ -15,18 +15,15 @@ public class GlobalDefaultExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public String defaultExceptionHandler(HttpServletRequest req, Exception e) {
-        if (e instanceof BusinessException) {
-            return ((BusinessException) e).getCode();
-        }
         if (e instanceof LoginStatusException) {
-            return "请重新登陆！";
+            throw new RuntimeException("请重新登陆！");
         }
         if (e instanceof RuntimeException) {
-            return "请联系管理员：" + e.getMessage();
+            throw new RuntimeException( "请联系管理员：" + e.getMessage());
         }
         if (e instanceof DataIntegrityViolationException) {
-            return "数据异常，请联系管理员：" + e.getMessage();
+            throw new RuntimeException("数据异常，请联系管理员：" + e.getMessage());
         }
-        return "";
+        throw new RuntimeException(e);
     }
 }
