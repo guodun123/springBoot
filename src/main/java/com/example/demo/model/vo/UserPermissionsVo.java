@@ -3,6 +3,8 @@ package com.example.demo.model.vo;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class UserPermissionsVo {
@@ -13,4 +15,5 @@ public class UserPermissionsVo {
     private String menuUrl;
     private Long userId;
     private Long menuId;
+    private List<UserPermissionsVo> childs;
 }
