@@ -18,9 +18,7 @@ public class GlobalDefaultExceptionHandler {
         if (e instanceof LoginStatusException) {
             throw new RuntimeException("请重新登陆！");
         }
-        if (e instanceof RuntimeException) {
-            throw new RuntimeException( "请联系管理员：" + e.getMessage());
-        }
+
         if (e instanceof DataIntegrityViolationException) {
             throw new RuntimeException("数据异常，请联系管理员：" + e.getMessage());
         }

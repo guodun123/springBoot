@@ -60,7 +60,7 @@ public class LoginController {
 
     @RequestMapping("a")
     public ModelAndView a(Model model) {
-        //userPermissionsService.findUserPermissionByUserId(JedisPoolUtil.get())
+       model.addAttribute("menus",userPermissionsService.findUserPermissionByUserId(1L)) ;
         return new ModelAndView("index/menu");
     }
 

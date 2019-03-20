@@ -10,7 +10,7 @@
         <result column="menu_url" property="menuUrl" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="base_column">
-        id,user_id,menu_id
+        id,parent_id,level,permissions_no,menu_name,menu_url
     </sql>
     <insert id="insert" parameterType="com.example.demo.model.MenuPermissions" keyColumn="id" keyProperty="id"
             useGeneratedKeys="true">
@@ -82,6 +82,16 @@
             </if>
         </where>
     </select>
+    <select id="selectByIds" parameterType="com.example.demo.model.MenuPermissions" resultMap="BaseResultMap">
+        select
+        <include refid="base_column"/>
+        from menu_permissions
+        where  id in
+        <foreach collection="ids" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+
+    </select>
 
     <update id="update" parameterType="com.example.demo.model.MenuPermissions">
         update user_info
@@ -108,5 +118,6 @@
     <delete id="deleteById" parameterType="java.lang.Long">
       delete from menu_permissions where id = #{id}
     </delete>
+
 
 </mapper>

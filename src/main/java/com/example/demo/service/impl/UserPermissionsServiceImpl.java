@@ -34,12 +34,13 @@ public class UserPermissionsServiceImpl implements UserPermissionsService {
         List<MenuPermissions> menuPermissions = menuPermissionsDAO.selectByIds(menuIds);
         Map<Long, UserPermissionsVo> menuMaps = new HashMap<>();
         for (MenuPermissions menu : menuPermissions) {
-            UserPermissionsVo vo = menuMaps.get(menu.getId());
-            if (null == vo) {
-                vo = new UserPermissionsVo();
-            }
+
             //如果是1级菜单
             if (NumberUtils.zero.equals(menu.getLevel())) {
+                UserPermissionsVo vo = menuMaps.get(menu.getId());
+                if (null == vo) {
+                    vo = new UserPermissionsVo();
+                }
                 vo.setMenuName(menu.getMenuName());
                 vo.setLevel(NumberUtils.zero);
                 vo.setMenuUrl(menu.getMenuUrl());
@@ -50,6 +51,10 @@ public class UserPermissionsServiceImpl implements UserPermissionsService {
             }
             //如果是2级菜单
             if (NumberUtils.one.equals(menu.getLevel())) {
+                UserPermissionsVo vo = menuMaps.get(menu.getParentId());
+                if (null == vo) {
+                    vo = new UserPermissionsVo();
+                }
                 List<UserPermissionsVo> childs = vo.getChilds();
                 if (ArrayUtils.listIsEmpty(childs)) {
                     childs = new ArrayList<>();
