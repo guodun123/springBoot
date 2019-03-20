@@ -16,43 +16,50 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
     @Autowired
     private LoginService loginService;
+
     @RequestMapping("/")
-    public ModelAndView loginFtl(Model model){
+    public ModelAndView loginFtl(Model model) {
         return new ModelAndView("login/login");
     }
+
     @RequestMapping("login")
-    public void login(String loginName,String password){
+    public void login(String loginName, String password) {
         //JedisPoolUtil.set("LoginName","loginName",555555);
-        loginService.checkPassword(loginName,password);
+        loginService.checkPassword(loginName, password);
     }
+
     @RequestMapping("findPassword")
-    public ModelAndView findPassword(){
+    public ModelAndView findPassword() {
         return new ModelAndView("login/find_password");
     }
 
     @RequestMapping("regist")
-    public ModelAndView regist(Model model){
+    public ModelAndView regist(Model model) {
         return new ModelAndView("login/regist");
     }
+
     @RequestMapping("addUser")
     @ResponseBody
-    public ResponseHolder addUser(Login login){
+    public ResponseHolder addUser(Login login) {
         loginService.addUser(login);
         return ResponseHolder.buildSuccessResponse();
     }
+
     @RequestMapping("validLoginName")
     @ResponseBody
-    public ResponseHolder validLoginName(String  loginName){
+    public ResponseHolder validLoginName(String loginName) {
         loginService.validLoginName(loginName);
         return ResponseHolder.buildSuccessResponse();
     }
 
     @RequestMapping("a")
-    public ModelAndView a(Model model){
+    public ModelAndView a(Model model) {
+
         return new ModelAndView("index/menu");
     }
+
     @RequestMapping("b")
-    public ModelAndView b(Model model){
+    public ModelAndView b(Model model) {
         return new ModelAndView("index/tesxt");
     }
 }
