@@ -30,13 +30,16 @@ spring:
 
 #  spring.resources.chain.strategy.content.enabled=true
 #  spring.resources.chain.strategy.content.paths=/**
+#spring.resources.static-locations=classpath:/static/css/,classpath:/static/images/,classpath:/static/js/
+
   resources:
     chain:
       strategy:
         content:
           enabled: true
           paths: /**
-#redis jedis配置
+    static-locations: classpath:/static/js/,classpath:/static/views/,classpath:/static/
+  #redis jedis配置
   redis:
     # Redis数据库索引（默认为0）
     database: 0

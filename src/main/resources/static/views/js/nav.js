@@ -1,7 +1,7 @@
 var navs = [{
 	"title" : "后台首页",
 	"icon" : "icon-computer",
-	"href" : "page/main.html",
+	"href" : "/page/main.html",
 	"spread" : false
 },{
 	"title" : "文章列表",
