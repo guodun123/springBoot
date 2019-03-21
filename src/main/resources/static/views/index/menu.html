@@ -18,7 +18,7 @@
         <li class="layui-nav-item" th:each="menus,menuStatr:${menus}" >
             <a href="#" th:text="${menus.menuName}" ></a>
             <dl class="layui-nav-child" th:each="childs,childStart:${menus.childs}">
-                <dd ><a href="javascript:;" class="my-menu-class" th:text="${childs.menuName}" th:id="${childs.menuId}"></a></dd>
+                <dd ><a href="javascript:;" class="my-menu-class" th:attr="url = ${childs.menuUrl}" th:text="${childs.menuName}" th:id="${childs.menuId}"></a></dd>
             </dl>
         </li>
         </li>
@@ -68,36 +68,33 @@
             , element = layui.element;
 
         //触发事件
-        var active = {
+        var _active = {
             tabAdd: function (title,id,url) {
-                //新增一个Tab项
-
-            }
-            , tabDelete: function (othis) {
-                //删除指定Tab项
-                element.tabDelete('homeFilter', '4'); //删除：“商品管理”
-                othis.addClass('layui-btn-disabled');
-            }
-            , tabChange: function () {
+                //新增一个tab页
+                element.tabAdd('homeFilter', {
+                    title: title,
+                    type:2,
+                    content: url,
+                    id: id
+                })
+            },
+            tabChange: function (id) {
                 //切换到指定Tab项
-
+                element.tabChange('homeFilter', id);
             }
         };
+
         $('.my-menu-class').on('click', function () {
-            var othis = $(this),id = $(othis).attr("id"),title = $(othis).text();
+            var othis = $(this), id = $(othis).attr("id"),title = $(othis).text(),
+            url = $(othis).attr("url");
+            debugger;
             //判断tab是否存在
             if ( $(".layui-tab-title li[lay-id="+id+"]").length > 0 ) {
-                element.tabChange('homeFilter', id);
+                _active.tabChange(id);
                 return;
             }
-            //新增一个tab页
-            element.tabAdd('homeFilter', {
-                title: title,
-                content: "login/login",
-                id: id
-            });
-            //切换到新增的tab页
-            element.tabChange('homeFilter', id);
+            _active.tabAdd(title,id,url);
+            _active.tabChange(id);
         });
     });
 </script>
