@@ -7,7 +7,7 @@ import javax.servlet.*;
 import java.io.IOException;
 
 /**
- * 自定义拦截器
+ * 自定义过滤器
  */
 @Component
 public class MyFilter implements Filter {
