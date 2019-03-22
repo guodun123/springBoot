@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="stylesheet" href="../layuiadmin/layui/css/layui.css" media="all">
   <link rel="stylesheet" href="../layuiadmin/style/admin.css" media="all">
-  
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script>
   /^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问');
   </script>
@@ -102,7 +102,7 @@
               </a>
               <dl class="layui-nav-child">
                 <dd data-name="console" class="layui-this">
-                  <a lay-href="home/console.html">控制台</a>
+                  <a lay-href="home/console.html" id = "testAjax">控制台</a>
                 </dd>
                 <dd data-name="console">
                   <a lay-href="home/homepage1.html">主页一</a>
@@ -448,12 +448,32 @@
   </div>
 
   <script src="../layuiadmin/layui/layui.js"></script>
+  <script src="../layuiadmin/layui/layui.js"></script>
   <script>
   layui.config({
     base: '../layuiadmin/' //静态资源所在路径
   }).extend({
     index: 'lib/index' //主入口模块
   }).use('index');
+
+  layui.use('form',function () {
+      $("testAjax").on("click",function () {
+          debugger;
+          $.ajax({
+              async: false,
+              url: "login/login",
+              data: $(data.form).serialize(),
+              type: "POST",
+              dataType: "json",
+              success: function (result) {
+                  $("#loginTip").html("");
+                  window.location.href="/login/a";
+              },error:function (result) {
+                  $("#loginTip").html(result.responseText);
+              }
+          });
+      })
+  })
   </script>
 </body>
 </html>
