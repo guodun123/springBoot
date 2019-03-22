@@ -33,6 +33,10 @@ public class LoginController {
     public void login(String loginName, String password, HttpServletRequest request, HttpServletResponse response) {
         loginService.checkPassword(loginName, password,request,response);
     }
+    @RequestMapping("/hello")
+    public String hello(Model model) {
+        return "home/homepage1";
+    }
 
     @RequestMapping("findPassword")
     public ModelAndView findPassword() {
