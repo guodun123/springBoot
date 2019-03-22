@@ -68,4 +68,8 @@ public class LoginController {
     public ModelAndView b(Model model) {
         return new ModelAndView("index/tesxt");
     }
+    @RequestMapping("c")
+    public ModelAndView c(Model model) {
+        return new ModelAndView("index");
+    }
 }
