@@ -72,4 +72,8 @@ public class LoginController {
     public ModelAndView c(Model model) {
         return new ModelAndView("index");
     }
+    @RequestMapping("d")
+    public ModelAndView d(Model model) {
+        return new ModelAndView("home/console");
+    }
 }

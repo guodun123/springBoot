@@ -51,8 +51,8 @@ public class LoginServiceImpl implements LoginService {
         HttpSession session = request.getSession();
         session.setAttribute("LoginName",loginName);
         session.setAttribute("UserId",login.getId());
-        JedisPoolUtil.set("LoginName"+login.getId(),loginName,555555);
-        JedisPoolUtil.set("UserId"+loginName,login.getId(),555555);
+       /* JedisPoolUtil.set("LoginName"+login.getId(),loginName,555555);
+        JedisPoolUtil.set("UserId"+loginName,login.getId(),555555);*/
     }
 
     @Override
