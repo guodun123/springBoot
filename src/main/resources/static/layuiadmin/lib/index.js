@@ -42,7 +42,7 @@ layui.extend({
       if(!matchTo){
         $(APP_BODY).append([
           '<div class="layadmin-tabsbody-item layui-show">'
-            ,'<iframe src="'+ url +'" frameborder="0" class="layadmin-iframe"></iframe>'
+            ,'<iframe src="/views/'+ url +'" frameborder="0" class="layadmin-iframe"></iframe>'
           ,'</div>'
         ].join(''));
         tabsPage.index = tabs.length;
