@@ -1,9 +1,9 @@
 spring:
   datasource:
     #数据库 地址 用户名 密码  以及驱动 此处报错不影响启动（设置的是启动加载驱动）
-    url: jdbc:mysql://localhost:3306/test
+    url: jdbc:mysql://192.168.55.62:3306/wms_gj
     username: root
-    password: admin
+    password: 360jk
     driver-class-name: com.mysql.jdbc.Driver
 #  mvc:
 #    view:
@@ -16,18 +16,6 @@ spring:
   profiles:
     active: dev  #生产环境下改成“prod”
 
-  thymeleaf:
-    #开发时关闭缓存,不然没法看到实时页面
-    cache: false
-    encoding: UTF-8
-    servlet:
-      content-type: text/html
-      #实际项目中可能会有不太严格的HTML格式，此时设置mode=HTML5将会对非严格的报错
-      #spring.thymeleaf.mode的默认值是HTML5，其实是一个很严格的检查，改为LEGACYHTML5可以得到一个可能更友好亲切的格式要求。
-    mode: LEGACYHTML5
-    prefix: classpath:/static/views/
-    suffix: .html
-
 #  spring.resources.chain.strategy.content.enabled=true
 #  spring.resources.chain.strategy.content.paths=/**
   resources:
@@ -36,28 +24,6 @@ spring:
         content:
           enabled: true
           paths: /**
-#redis jedis配置
-  redis:
-    # Redis数据库索引（默认为0）
-    database: 0
-    # Redis服务器地址
-    host: localhost
-    # 端口
-    port: 6379
-    # Redis服务器连接密码（默认为空）
-    #password:
-    timeout: 0
-    jedis:
-      pool:
-        # 连接池最大连接数（使用负值表示没有限制）
-        max-active: 200
-        # 连接池最大阻塞等待时间（使用负值表示没有限制）
-        max-wait: -1
-        # 连接池中的最大空闲连接
-        max-idle: 8
-        # 连接池中的最小空闲连接
-        # 连接超时时间（毫秒）
-        min-idle: 0
    #spring-session 使用
   session:
     store-type: none
@@ -67,4 +33,4 @@ mybatis:
   #xml位置
   mapper-locations: classpath:mapper/*.xml
 server:
-  port: 8088
+  port: 80

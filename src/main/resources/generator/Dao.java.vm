@@ -1,0 +1,14 @@
+package ${package}.dao;
+
+import ${package}.entity.${className}DO;
+
+import com.daxia.framework.common.dao.HibernateBaseDAO;
+import org.jboss.seam.annotations.Name;
+/**
+ * ${comments}
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Name("${package}.${classname}DAO")
+public class ${className}DAO  extends HibernateBaseDAO<${className},Long> {
+}

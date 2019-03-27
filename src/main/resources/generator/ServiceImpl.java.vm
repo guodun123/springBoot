@@ -1,0 +1,43 @@
+package ${package}.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.*;
+
+import org.jboss.seam.annotations.In;
+import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Transactional;
+
+import ${package}.dao.${className}DAO;
+import ${package}.entity.${className};
+import ${package}.service.${className}Service;
+
+
+@Name("${package}.${classname}Service")
+public class ${className}ServiceImpl implements ${className}Service {
+    @In
+    private ${className}DAO ${classname}DAO;
+
+    @Override
+    public ${className} get${className}ById(Long id) {
+        return ${classname}DAO.get(id);
+    }
+
+    @Override
+    @Transactional
+    public void saveOrUpdate(${className} ${classname}) {
+        return ${classname}DAO.saveOrUpdate(${classname});
+    }
+
+    @Override
+    public DataPage<${className}> find${className}ByFilter(${className}Filter filter, int startIndex, int pageSize) {
+        return ${classname}DAO.findRangeByFilter(filter, startIndex, pageSize);
+    }
+
+    @Override
+    public List<${className}> query${className}ByFilter(${className}Filter filter) {
+        return ${classname}DAO.findByFilter(asnFilter);
+    }
+
+}
