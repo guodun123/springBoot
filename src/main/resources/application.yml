@@ -32,5 +32,7 @@ mybatis:
   type-aliases-package: com.example.demo
   #xml位置
   mapper-locations: classpath:mapper/*.xml
+
+  # 端口号 http协议默认端口 80
 server:
   port: 80
